@@ -1078,6 +1078,12 @@ $(window).on('load', function() {
     knox.find('i').addClass('fa fa-circle').css('color', 'green');
     ppLegend.append(knox);
     knoxLegend.css('display', 'none');
+
+    /* Rivers -> Water */
+    var riversLegend = $('.polylines-legend' + legendOrder['Rivers']);
+    //riversLegend.find('i').removeClass('color-line').addClass('fa fa-square').css({'color': 'lightblue');
+    waterLegend.append(riversLegend.children('form'));
+    riversLegend.css('display', 'none');
   }
 
   /**
