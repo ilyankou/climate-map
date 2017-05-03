@@ -1008,27 +1008,6 @@ $(window).on('load', function() {
    * Customization for Alex
    */
   function customizeLadder() {
-    /*
-    var solarLegend = $('.polygons-legend' + legendOrder['Solar Panels']);
-    var energyLegend = $('#points-legend' + legendOrder['Energy']);
-    var energyLegendLabel = energyLegend.find('label:nth(1)').clone();
-    energyLegendLabel.find('span').contents().last().replaceWith(' Solar Panels');
-    energyLegendLabel.find('i').removeClass('fa-icon').addClass('fa-circle').css('color', 'yellow');
-    energyLegendLabel.find('input').removeClass('leaflet-control-layers-selector');
-
-    energyLegendLabel.change(function(e) {
-      if (energyLegendLabel.find('input:checked').length > 0) {
-        solarLegend.find('input:first').click();
-      } else {
-        solarLegend.find('input:last').click();
-      }
-    });
-
-    energyLegend.append(energyLegendLabel);
-    energyLegendLabel.click();  // uncheck
-    solarLegend.hide();
-    */
-
     /* Solar Panels -> Energy */
     var solarLegend = $('.polygons-legend' + legendOrder['Solar Panels']);
     var solarForm = solarLegend.children('form');
@@ -1037,10 +1016,16 @@ $(window).on('load', function() {
     energyLegend.append(solarForm);
     solarLegend.css('display', 'none');
 
+    /* Bike Lanes -> Transportation */
+    var transportLegend = $('#points-legend' + legendOrder['Transportation']);
+    var bikeLegend = $('.polylines-legend' + legendOrder['Bike Lanes']);
+    var bikeLanes = bikeLegend.children('form');
+    transportLegend.append(bikeLanes);
+    bikeLegend.css('display', 'none');
+
     /* CTtransit Bus Stop -> Transportation */
     var busLegend = $('.polygons-legend' + legendOrder['CTtransit Bus Stops']);
     var busStops = busLegend.children('form');
-    var transportLegend = $('#points-legend' + legendOrder['Transportation']);
     busStops.find('i').addClass('fa fa-circle').css('color', 'navy');
     transportLegend.append(busStops);
     busLegend.css('display', 'none');
@@ -1051,12 +1036,6 @@ $(window).on('load', function() {
     toz.find('i').addClass('fa fa-square').css('color', 'purple');
     transportLegend.append(toz);
     tozLegend.css('display', 'none');
-
-    /* Bike Lanes -> Transportation */
-    var bikeLegend = $('.polylines-legend' + legendOrder['Bike Lanes']);
-    var bikeLanes = bikeLegend.children('form');
-    //transportLegend.append(bikeLanes);
-    bikeLegend.css('display', 'none');
 
     /* CT River -> Water */
     var waterLegend = $('#points-legend' + legendOrder['Water']);
@@ -1072,7 +1051,7 @@ $(window).on('load', function() {
     var knox = knoxLegend.children('form');
 
     /* Rename Public Parks into Green Spaces */
-    ppLegend.find('h6').contents().eq(1).replaceWith('Green Spaces');
+    ppLegend.find('h6').contents().eq(1).replaceWith('Green Space');
     ppLegend.find('form').find('i').addClass('fa fa-map').css('color', 'green');
 
     knox.find('i').addClass('fa fa-circle').css('color', 'green');
@@ -1081,9 +1060,13 @@ $(window).on('load', function() {
 
     /* Rivers -> Water */
     var riversLegend = $('.polylines-legend' + legendOrder['Rivers']);
-    //riversLegend.find('i').removeClass('color-line').addClass('fa fa-square').css({'color': 'lightblue');
     waterLegend.append(riversLegend.children('form'));
     riversLegend.css('display', 'none');
+
+    /* Town Outlines: turn on and remove legend */
+    var townLegend = $('.polygons-legend' + legendOrder['Town Outlines']);
+    townLegend.find('input').click();
+    townLegend.css('display', 'none');
   }
 
   /**
